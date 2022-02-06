@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Hello, WebVR! - A-Frame</title>
+      <title>VR Space World</title>
       <meta name="description" content="Hello, WebVR! - A-Frame">
-      <!--  note we are using 1.1.0 as most recent -->
+      <!--  note we are using 1.0.4 since this works for physics compatability -->
       <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
       <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
       <script src="https://unpkg.com/super-hands@^2.1.0/dist/super-hands.min.js"></script>
@@ -34,7 +34,7 @@
 
         
         
-
+        <!-- Super hands controls -->
         <a-entity camera progressive-controls id="player"  position="1 0 1">
 
         </a-entity>
@@ -62,9 +62,8 @@
 
           <!-- we will start autoplay music after a user-gesture. see js in <head> -->
         <a-entity class="ambient-music" sound="src:#caravan; autoplay:false;"></a-entity>
-        <!-- <a-plane ammo-body="type:kinematic" ammo-shape="type:box" position="0 -0.66 0" scale="50 50 0" rotation="90 0 0" visibility="false"></a-plane> -->
 
-
+          <!-- Spawn button -->
         <a-entity>
           <a-cylinder class="button interactive" generate-obj position="0 0.6 -1" radius="0.15" height="0.2" color="green"
                       animation__click="property:position; from: 0 0.5 -1; to: 0 0.6 -1; startEvents:click; dur: 300"> 
@@ -72,11 +71,10 @@
           <a-entity position="0 -0.1 -1.1" geometry="primitive:box; width:1; depth:0.5; height:1.2;" material="color:rgb(255, 255, 255)" shadow></a-entity>
         </a-entity>
 
+        <!-- Air lock box -->
+        <a-entity position="-2 0 -1.5" geometry="primitive:box; width:2; depth:1.25; height:1.75;" material="color:rgb(255, 255, 255)" shadow></a-entity>
         
-        <a-entity position="-2 0 -1.5" geometry="primitive:box; width:2; depth:1.25; height:1.75;" material="color:rgb(255, 255, 255)" shadow>
-          
-        </a-entity>
-        
+        <!-- Text for all boxes -->
         <a-entity geometry="plane" width="1" height="1" position="-0.85 0.85 -0.85" material="color:rgb(0, 255, 255)">
           <a-entity text="font: mozillavr; width: 4; value: WARNING; color: red"></a-entity>
           <a-entity position="-0.5 -0.25 0" text="font: mozillavr; width: 3; value: Air lock ejection"></a-entity>
@@ -87,9 +85,7 @@
 
         
           
-
-        <!-- note three ways of defining color: hexidecimal, rgb, and from a list of pre-defined colours -->
-        <!-- see here for more information: http://www.unm.edu/~tbeach/IT145/color.html -->
+        <!-- The structure that makes up the room -->
         <a-entity id="room2">
           <a-entity class="module" static-body geometry="primitive:plane; width:14; height:6.5;" material="color:grey;" position="0 -0.66 2" rotation="-90 0 0" shadow="cast:false; receive:true;"></a-entity>
             
@@ -133,6 +129,7 @@
 
         </a-entity>
 
+        <!-- FInally, sky texture for space theme -->
         <a-sky src="#skyTexture" animation="property: rotation; from: 0 360 0; to: 0 1 0; loop: true; dur: 240000"></a-sky>
       
       </a-scene>

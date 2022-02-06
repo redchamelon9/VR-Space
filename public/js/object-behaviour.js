@@ -1,4 +1,5 @@
-AFRAME.registerComponent('generate-obj', {
+//Instantiating new material balls
+AFRAME.registerComponent('generate-obj', { 
     init: function() {
       let el = this.el;
 
@@ -9,7 +10,6 @@ AFRAME.registerComponent('generate-obj', {
         newMark.setAttribute('material','color: purple');
         newMark.setAttribute('radius', '0.25');
         newMark.setAttribute('position','1 1 -1');
-        // newMark.setAttribute('destroy-obj', {});
         newMark.setAttribute('grabbable', {});
         newMark.setAttribute('grabbing-obj', {});
         newMark.setAttribute('droppable');
@@ -27,6 +27,8 @@ AFRAME.registerComponent('generate-obj', {
     
 });
 
+
+//Code for grabbing and destroying the balls
 AFRAME.registerComponent('grabbing-obj', {
     init: function() {
       let el = this.el;
@@ -37,14 +39,11 @@ AFRAME.registerComponent('grabbing-obj', {
       this.grab = function(e){
         
         if(thisObj.x < -0.5 && thisObj.x > -3 && thisObj.y < 2 && thisObj.y > -0.5 && thisObj.z < 0.25 && thisObj.z > -2){
-          console.log("it works");
           el.setAttribute("color", 'red');
           el.removeAttribute("dynamic-body");
           el.setAttribute('animation', "property: position; to: -1 -15 -300; dur: 1500; easing: linear; loop: false");
-          console.log(thisObj.z);
           
         }
-        
       }
 
       this.el.addEventListener('dragend', this.grab);
@@ -56,8 +55,7 @@ AFRAME.registerComponent('grabbing-obj', {
     tick: function() {
       let el = this.el;
       let thisObj = el.object3D.position;
-      //console.log(el);
-      
+
       if(thisObj.z<-299){
         console.log(thisObj.z);
         el.parentElement.removeChild(el);
