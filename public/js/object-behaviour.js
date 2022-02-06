@@ -7,7 +7,7 @@ AFRAME.registerComponent('generate-obj', {
 
         let newMark = document.createElement('a-sphere');
         newMark.setAttribute('material','color: purple');
-        newMark.setAttribute('radius', '0.5');
+        newMark.setAttribute('radius', '0.25');
         newMark.setAttribute('position','1 1 -1');
         // newMark.setAttribute('destroy-obj', {});
         newMark.setAttribute('grabbable', {});
@@ -36,11 +36,11 @@ AFRAME.registerComponent('grabbing-obj', {
 
       this.grab = function(e){
         
-        if(thisObj.x < -0.5 && thisObj.x > -3 && thisObj.y < 1.5 && thisObj.y > -0.5 && thisObj.z < 0.25 && thisObj.z > -1.5){
+        if(thisObj.x < -0.5 && thisObj.x > -3 && thisObj.y < 2 && thisObj.y > -0.5 && thisObj.z < 0.25 && thisObj.z > -2){
           console.log("it works");
           el.setAttribute("color", 'red');
           el.removeAttribute("dynamic-body");
-          el.setAttribute('animation', "property: position; to: -1 -10 -300; dur: 1500; easing: linear; loop: false");
+          el.setAttribute('animation', "property: position; to: -1 -15 -300; dur: 1500; easing: linear; loop: false");
           console.log(thisObj.z);
           
         }
